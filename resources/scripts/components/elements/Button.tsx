@@ -11,42 +11,74 @@ interface Props {
 }
 
 const ButtonStyle = styled.button<Omit<Props, 'isLoading'>>`
-    ${tw`relative inline-block rounded p-2 uppercase tracking-wide text-sm transition-all duration-150 border`};
+    ${tw`relative inline-flex items-center justify-center rounded-xl px-4 py-2 uppercase tracking-[0.16em] text-xs font-semibold transition-all duration-150 border overflow-hidden`};
+    min-height: 2.75rem;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 12px 30px rgba(2, 6, 23, 0.16);
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 1px;
+        border-radius: 0.7rem;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+        opacity: 0.85;
+        pointer-events: none;
+    }
 
     ${(props) =>
         ((!props.isSecondary && !props.color) || props.color === 'primary') &&
         css<Props>`
-            ${(props) => !props.isSecondary && tw`bg-primary-500 border-primary-600 border text-primary-50`};
+            ${(props) =>
+                !props.isSecondary &&
+                css`
+                    color: #eff6ff;
+                    border-color: rgba(14, 165, 233, 0.62);
+                    background: linear-gradient(
+                        135deg,
+                        rgba(14, 165, 233, 0.95),
+                        rgba(59, 130, 246, 0.96) 52%,
+                        rgba(99, 102, 241, 0.94)
+                    );
+                `};
 
             &:hover:not(:disabled) {
-                ${tw`bg-primary-600 border-primary-700`};
+                transform: translateY(-1px);
+                box-shadow: 0 18px 34px rgba(14, 165, 233, 0.24);
+                filter: saturate(1.08);
             }
         `};
 
     ${(props) =>
         props.color === 'grey' &&
         css`
-            ${tw`border-neutral-600 bg-neutral-500 text-neutral-50`};
+            ${tw`text-neutral-50`};
+            border-color: rgba(148, 163, 184, 0.2);
+            background: linear-gradient(135deg, rgba(51, 65, 85, 0.95), rgba(30, 41, 59, 0.94));
 
             &:hover:not(:disabled) {
-                ${tw`bg-neutral-600 border-neutral-700`};
+                transform: translateY(-1px);
+                border-color: rgba(148, 163, 184, 0.34);
             }
         `};
 
     ${(props) =>
         props.color === 'green' &&
         css<Props>`
-            ${tw`border-green-600 bg-green-500 text-green-50`};
+            color: #f0fdf4;
+            border-color: rgba(34, 197, 94, 0.46);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(34, 197, 94, 0.92));
 
             &:hover:not(:disabled) {
-                ${tw`bg-green-600 border-green-700`};
+                transform: translateY(-1px);
+                box-shadow: 0 18px 34px rgba(34, 197, 94, 0.2);
             }
 
             ${(props) =>
                 props.isSecondary &&
                 css`
                     &:active:not(:disabled) {
-                        ${tw`bg-green-600 border-green-700`};
+                        box-shadow: 0 18px 34px rgba(34, 197, 94, 0.2);
                     }
                 `};
         `};
@@ -54,42 +86,57 @@ const ButtonStyle = styled.button<Omit<Props, 'isLoading'>>`
     ${(props) =>
         props.color === 'red' &&
         css<Props>`
-            ${tw`border-red-600 bg-red-500 text-red-50`};
+            color: #fff1f2;
+            border-color: rgba(248, 113, 113, 0.46);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.94), rgba(220, 38, 38, 0.94));
 
             &:hover:not(:disabled) {
-                ${tw`bg-red-600 border-red-700`};
+                transform: translateY(-1px);
+                box-shadow: 0 18px 34px rgba(239, 68, 68, 0.2);
             }
 
             ${(props) =>
                 props.isSecondary &&
                 css`
                     &:active:not(:disabled) {
-                        ${tw`bg-red-600 border-red-700`};
+                        box-shadow: 0 18px 34px rgba(239, 68, 68, 0.2);
                     }
                 `};
         `};
 
-    ${(props) => props.size === 'xsmall' && tw`px-2 py-1 text-xs`};
+    ${(props) => props.size === 'xsmall' && tw`px-2.5 py-1.5 text-2xs rounded-lg min-h-0`};
     ${(props) => (!props.size || props.size === 'small') && tw`px-4 py-2`};
-    ${(props) => props.size === 'large' && tw`p-4 text-sm`};
-    ${(props) => props.size === 'xlarge' && tw`p-4 w-full`};
+    ${(props) => props.size === 'large' && tw`px-5 py-4 text-sm`};
+    ${(props) => props.size === 'xlarge' && tw`px-5 py-4 w-full text-sm`};
 
     ${(props) =>
         props.isSecondary &&
         css<Props>`
-            ${tw`border-neutral-600 bg-transparent text-neutral-200`};
+            background: rgba(15, 23, 42, 0.56);
+            border-color: rgba(148, 163, 184, 0.18);
+            ${tw`text-neutral-100`};
 
             &:hover:not(:disabled) {
-                ${tw`border-neutral-500 text-neutral-100`};
-                ${(props) => props.color === 'red' && tw`bg-red-500 border-red-600 text-red-50`};
-                ${(props) => props.color === 'primary' && tw`bg-primary-500 border-primary-600 text-primary-50`};
-                ${(props) => props.color === 'green' && tw`bg-green-500 border-green-600 text-green-50`};
+                ${tw`text-white`};
+                border-color: rgba(103, 232, 249, 0.3);
+                background: rgba(15, 23, 42, 0.84);
+                ${(props) =>
+                    props.color === 'red' &&
+                    'background: linear-gradient(135deg, rgba(239, 68, 68, 0.94), rgba(220, 38, 38, 0.94)); border-color: rgba(248, 113, 113, 0.46);'};
+                ${(props) =>
+                    props.color === 'primary' &&
+                    'background: linear-gradient(135deg, rgba(14, 165, 233, 0.95), rgba(59, 130, 246, 0.96) 52%, rgba(99, 102, 241, 0.94)); border-color: rgba(14, 165, 233, 0.62);'};
+                ${(props) =>
+                    props.color === 'green' &&
+                    'background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(34, 197, 94, 0.92)); border-color: rgba(34, 197, 94, 0.46);'};
             }
         `};
 
     &:disabled {
         opacity: 0.55;
         cursor: default;
+        transform: none;
+        box-shadow: none;
     }
 `;
 
@@ -102,7 +149,7 @@ const Button: React.FC<ComponentProps> = ({ children, isLoading, ...props }) => 
                 <Spinner size={'small'} />
             </div>
         )}
-        <span css={isLoading ? tw`text-transparent` : undefined}>{children}</span>
+        <span css={isLoading ? tw`text-transparent` : tw`relative z-10`}>{children}</span>
     </ButtonStyle>
 );
 

@@ -14,11 +14,21 @@ type Props = Readonly<
 
 const ContentBox = ({ title, borderColor, showFlashes, showLoadingOverlay, children, ...props }: Props) => (
     <div {...props}>
-        {title && <h2 css={tw`text-neutral-300 mb-4 px-4 text-2xl`}>{title}</h2>}
+        {title && <h2 css={tw`mb-4 px-2 text-2xl text-white`}>{title}</h2>}
         {showFlashes && (
             <FlashMessageRender byKey={typeof showFlashes === 'string' ? showFlashes : undefined} css={tw`mb-4`} />
         )}
-        <div css={[tw`bg-neutral-700 p-4 rounded shadow-lg relative`, !!borderColor && tw`border-t-4`]}>
+        <div
+            css={[
+                tw`relative rounded-[1.5rem] border p-4 shadow-2xl backdrop-blur-xl sm:p-5`,
+                !!borderColor && tw`border-t-4`,
+            ]}
+            style={{
+                background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.82), rgba(17, 24, 39, 0.92))',
+                borderColor: borderColor || 'rgba(148, 163, 184, 0.12)',
+                boxShadow: '0 22px 70px rgba(2, 6, 23, 0.24)',
+            }}
+        >
             <SpinnerOverlay visible={showLoadingOverlay || false} />
             {children}
         </div>
