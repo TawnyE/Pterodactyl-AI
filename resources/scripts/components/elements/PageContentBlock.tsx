@@ -20,22 +20,21 @@ const PageContentBlock: React.FC<PageContentBlockProps> = ({ title, showFlashKey
     return (
         <CSSTransition timeout={150} classNames={'fade'} appear in>
             <>
-                <ContentContainer css={tw`my-4 sm:my-10`} className={className}>
+                <ContentContainer css={tw`my-5 sm:my-8`} className={className}>
                     {showFlashKey && <FlashMessageRender byKey={showFlashKey} css={tw`mb-4`} />}
                     {children}
                 </ContentContainer>
-                <ContentContainer css={tw`mb-4`}>
-                    <p css={tw`text-center text-neutral-500 text-xs`}>
-                        <a
-                            rel={'noopener nofollow noreferrer'}
-                            href={'https://pterodactyl.io'}
-                            target={'_blank'}
-                            css={tw`no-underline text-neutral-500 hover:text-neutral-300`}
-                        >
-                            Pterodactyl&reg;
-                        </a>
-                        &nbsp;&copy; 2015 - {new Date().getFullYear()}
-                    </p>
+                <ContentContainer css={tw`mb-6 px-1`}>
+                    <div
+                        css={tw`rounded-2xl border border-white/10 bg-black/20 px-4 py-4 text-center shadow-xl backdrop-blur-lg`}
+                    >
+                        <p css={tw`text-xs uppercase tracking-[0.28em] text-cyan-300/75`}>
+                            Performance-first hosting UX
+                        </p>
+                        <p css={tw`mt-2 text-xs text-neutral-400`}>
+                            Crafted on top of Pterodactyl&reg; for a faster, more premium control panel experience.
+                        </p>
+                    </div>
                 </ContentContainer>
             </>
         </CSSTransition>

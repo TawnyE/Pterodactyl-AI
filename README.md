@@ -15,12 +15,31 @@ Stop settling for less. Make game servers a first class citizen on your platform
 
 ![Image](https://cdn.pterodactyl.io/site-assets/pterodactyl_v1_demo.gif)
 
+## Run This Fork Quickly
+
+If you want to run **this fork** instead of pulling the upstream `ghcr.io/pterodactyl/panel:latest` image, use the local build compose file included in this repository:
+
+```bash
+docker compose -f docker-compose.fork.yml up -d --build
+```
+
+That file builds the panel from the current checkout, so your UI changes and future fork-specific changes are what actually get deployed.
+
+### Fast fork workflow
+
+1. Clone **this** repository.
+2. Copy `docker-compose.fork.yml` and set your real `APP_URL`, database passwords, and mail settings.
+3. Run `docker compose -f docker-compose.fork.yml up -d --build`.
+4. For frontend-only iteration during development, use `yarn install && yarn build` or `yarn serve`.
+
+The original `docker-compose.example.yml` still points at the upstream published image for stock deployments.
+
 ## Documentation
 
-* [Panel Documentation](https://pterodactyl.io/panel/1.0/getting_started.html)
-* [Wings Documentation](https://pterodactyl.io/wings/1.0/installing.html)
-* [Community Guides](https://pterodactyl.io/community/about.html)
-* Or, get additional help [via Discord](https://discord.gg/pterodactyl)
+-   [Panel Documentation](https://pterodactyl.io/panel/1.0/getting_started.html)
+-   [Wings Documentation](https://pterodactyl.io/wings/1.0/installing.html)
+-   [Community Guides](https://pterodactyl.io/community/about.html)
+-   Or, get additional help [via Discord](https://discord.gg/pterodactyl)
 
 ## Sponsors
 
@@ -28,7 +47,7 @@ I would like to extend my sincere thanks to the following sponsors for helping f
 [Interested in becoming a sponsor?](https://github.com/sponsors/pterodactyl)
 
 | Company                                                                           | About                                                                                                                                                                                                                                           |
-|-----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [**Aussie Server Hosts**](https://aussieserverhosts.com/)                         | No frills Australian Owned and operated High Performance Server hosting for some of the most demanding games serving Australia and New Zealand.                                                                                                 |
 | [**BisectHosting**](https://www.bisecthosting.com/)                               | BisectHosting provides Minecraft, Valheim and other server hosting services with the highest reliability and lightning fast support since 2012.                                                                                                 |
 | [**MineStrator**](https://minestrator.com/)                                       | Looking for the most highend French hosting company for your minecraft server? More than 24,000 members on our discord trust us. Give us a try!                                                                                                 |
@@ -43,27 +62,27 @@ you the power to run game servers without bloating machines with a host of addit
 
 Some of our core supported games include:
 
-* Minecraft — including Paper, Sponge, Bungeecord, Waterfall, and more
-* Rust
-* Terraria
-* Teamspeak
-* Mumble
-* Team Fortress 2
-* Counter Strike: Global Offensive
-* Garry's Mod
-* ARK: Survival Evolved
+-   Minecraft — including Paper, Sponge, Bungeecord, Waterfall, and more
+-   Rust
+-   Terraria
+-   Teamspeak
+-   Mumble
+-   Team Fortress 2
+-   Counter Strike: Global Offensive
+-   Garry's Mod
+-   ARK: Survival Evolved
 
 In addition to our standard nest of supported games, our community is constantly pushing the limits of this software
 and there are plenty more games available provided by the community. Some of these games include:
 
-* Factorio
-* San Andreas: MP
-* Pocketmine MP
-* Squad
-* Xonotic
-* Starmade
-* Discord ATLBot, and most other Node.js/Python discord bots
-* [and many more...](https://pterodactyleggs.com)
+-   Factorio
+-   San Andreas: MP
+-   Pocketmine MP
+-   Squad
+-   Xonotic
+-   Starmade
+-   Discord ATLBot, and most other Node.js/Python discord bots
+-   [and many more...](https://pterodactyleggs.com)
 
 ## License
 
